@@ -23,20 +23,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineTest {
 
     @Test
-    public void test_addOption_with_valid_option() {
+    public void test_addOption_with_null_option() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        Option option = Option.builder("a")
-                              .longOpt("alpha")
-                              .desc("Test option")
-                              .required(false)
-                              .build();
 
         // Act
-        builder.addOption(option);
+        builder.addOption(null);
 
         // Assert
-        assertTrue(builder.getOptions().contains(option), "Option should be added to the builder");
+        assertEquals(0, builder.getOptions().size(), "Builder should remain empty when adding null option");
     }
 }
 }
