@@ -16,8 +16,10 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class CommandLineTest {
@@ -25,22 +27,21 @@ public class CommandLineTest {
     private CommandLine.Builder builder;
 
     @Before
-    public void setup() {
+    public void setUp() {
         builder = new CommandLine.Builder();
     }
 
     @Test
-    public void addArg_chainedAdditionOfArguments_allArgumentsAreAdded() {
+    public void testAddOptionWithValidOption() {
         // Arrange
-        String arg1 = "--help";
-        String arg2 = "--version";
+        Option option = new Option("a", "optionA", false, "Test option A");
 
         // Act
-        builder.addArg(arg1).addArg(arg2);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertTrue("The first argument should be present in the args list.", builder.args.contains(arg1));
-        assertTrue("The second argument should be present in the args list.", builder.args.contains(arg2));
+        assertNotNull("The returned Builder instance should not be null", result);
+        assertTrue("The options list should contain the added option", result.build().getOptions().contains(option));
     }
 }
 }
