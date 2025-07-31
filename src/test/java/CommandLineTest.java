@@ -22,14 +22,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineBuilderTest {
 
     @Test
-    void test_builder_with_null_input_handling() {
+    void test_builder_creates_empty_commandline_object() {
         // Arrange
-
-        // Act
         CommandLine.Builder builder = new CommandLine.Builder();
 
+        // Act
+        CommandLine commandLine = builder.build();
+
         // Assert
-        assertNotNull(builder, "The builder instance should be created even when no parameters are provided.");
+        assertNotNull(commandLine, "The CommandLine object should not be null.");
+        assertTrue(commandLine.getOptions().length == 0, "The CommandLine object should have no options by default.");
     }
 }
 
