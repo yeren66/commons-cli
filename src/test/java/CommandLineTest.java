@@ -16,6 +16,7 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,17 +31,21 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddOptionWithNullOption() {
+    void testAddDuplicateOption() {
         // Arrange
-        int initialOptionCount = builder.build().getOptions().size();
+        Option option = Option.builder("b")
+            .longOpt("beta")
+            .desc("Option beta")
+            .hasArg()
+            .build();
 
         // Act
-        CommandLine.Builder result = builder.addOption(null);
+        builder.addOption(option);
+        builder.addOption(option);
 
         // Assert
-        assertNotNull(result, "Builder instance should not be null");
-        int finalOptionCount = builder.build().getOptions().size();
-        assertEquals(initialOptionCount, finalOptionCount, "Adding a null option should not change the options list");
+        CommandLine commandLine = builder.build();
+        assertEquals(2, commandLine.getOptions().stream().filter(opt -> opt.equals(option)).count(), "The duplicate option should be added to the options list");
     }
 }
 }
