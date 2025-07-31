@@ -145,6 +145,7 @@ public class CommandLine implements Serializable {
      */
     public static Builder builder() {
         return new Builder();
+      
     }
 
     /** The unrecognized options/arguments */
