@@ -16,9 +16,9 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandLineTest {
@@ -31,22 +31,20 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArgWithMultipleCalls() {
+    void testAddOptionWithValidOption() {
         // Arrange
-        String arg1 = "arg1";
-        String arg2 = "arg2";
-        String arg3 = "arg3";
+        Option option = Option.builder("a")
+            .longOpt("alpha")
+            .desc("Option alpha")
+            .hasArg()
+            .build();
 
         // Act
-        builder.addArg(arg1).addArg(arg2).addArg(arg3);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        List<String> args = builder.getArgs();
-        assertNotNull(args);
-        assertEquals(3, args.size());
-        assertEquals("arg1", args.get(0));
-        assertEquals("arg2", args.get(1));
-        assertEquals("arg3", args.get(2));
+        assertNotNull(result, "Builder instance should not be null");
+        assertTrue(builder.build().getOptions().contains(option), "The option should be added to the CommandLine options");
     }
 }
 }
