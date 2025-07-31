@@ -15,21 +15,30 @@ public class CommandLineTest {
         commandline = new CommandLine();
     }
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Option;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class CommandLineTest {
+public class CommandLineTest {
+
+    private CommandLine.Builder builder;
+
+    @Before
+    public void setup() {
+        builder = new CommandLine.Builder();
+    }
 
     @Test
-    void testBuilderWithInvalidOption() {
+    public void addArg_addValidArgument_successfullyAddsToArgsList() {
         // Arrange
-        CommandLine.Builder builder = new CommandLine.Builder();
-        Option invalidOption = null; // Simulating an invalid option
+        String validArgument = "--verbose";
 
-        // Act and Assert
-        assertThrows(IllegalArgumentException.class, () -> builder.addOption(invalidOption), "Adding a null option should throw an IllegalArgumentException.");
+        // Act
+        builder.addArg(validArgument);
+
+        // Assert
+        assertTrue("The argument should be added to the args list.", builder.args.contains(validArgument));
     }
 }
 }
