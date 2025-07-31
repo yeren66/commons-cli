@@ -15,7 +15,7 @@ public class CommandLineTest {
         commandline = new CommandLine();
     }
 
-import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,15 +23,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineTest {
 
     @Test
-    void test_builder_initialization() {
+    void test_builder_functionality_with_default_options() throws ParseException {
         // Arrange
-        CommandLine.Builder builder;
+        Options options = new Options();
+        options.addOption("a", "alpha", false, "Alpha option");
+        CommandLine.Builder builder = new CommandLine.Builder();
 
         // Act
-        builder = new CommandLine.Builder();
+        CommandLine cmd = builder.build();
 
         // Assert
-        assertNotNull(builder, "Builder should be successfully initialized and not null");
+        assertNotNull(cmd, "CommandLine object should not be null");
+        assertFalse(cmd.hasOption("a"), "CommandLine should not have 'alpha' option by default");
     }
 }
 }
