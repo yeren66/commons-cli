@@ -16,6 +16,7 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,15 +32,21 @@ class CommandLineTest {
     }
 
     @Test
-    void addOption_nullOption_doesNotThrowException() {
+    void addOption_duplicateOption_addsDuplicateSuccessfully() {
         // Arrange
-        int initialOptionsSize = builder.getOptions().size();
+        Option option = Option.builder("o")
+                              .longOpt("option")
+                              .desc("Test option")
+                              .hasArg()
+                              .build();
+        builder.addOption(option);
 
         // Act
-        builder.addOption(null);
+        builder.addOption(option);
 
         // Assert
-        assertEquals(initialOptionsSize, builder.getOptions().size(), "The options list size should remain unchanged.");
+        long count = builder.getOptions().stream().filter(o -> o.equals(option)).count();
+        assertEquals(2, count, "The option should be added twice to the options list.");
     }
 }
 }
