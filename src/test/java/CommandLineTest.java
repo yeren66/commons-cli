@@ -31,9 +31,9 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArgWithNullInput() {
+    void testAddArgWithEmptyString() {
         // Arrange
-        String arg = null;
+        String arg = "";
 
         // Act
         builder.addArg(arg);
@@ -41,7 +41,8 @@ class CommandLineTest {
         // Assert
         List<String> args = builder.getArgs();
         assertNotNull(args);
-        assertTrue(args.isEmpty());
+        assertEquals(1, args.size());
+        assertEquals("", args.get(0));
     }
 }
 }
