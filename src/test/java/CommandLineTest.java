@@ -30,15 +30,15 @@ public class CommandLineTest {
     }
 
     @Test
-    public void addArg_addValidArgument_successfullyAddsToArgsList() {
+    public void addArg_addNullArgument_doesNotAddToArgsList() {
         // Arrange
-        String validArgument = "--verbose";
+        String nullArgument = null;
 
         // Act
-        builder.addArg(validArgument);
+        builder.addArg(nullArgument);
 
         // Assert
-        assertTrue("The argument should be added to the args list.", builder.args.contains(validArgument));
+        assertTrue("The args list should remain empty when a null argument is added.", builder.args.isEmpty());
     }
 }
 }
