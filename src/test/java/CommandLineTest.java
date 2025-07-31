@@ -30,15 +30,15 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddArgWithEmptyString() {
+    public void testAddArgWithSpecialCharacters() {
         // Arrange
-        String emptyArgument = "";
+        String specialCharArgument = "!@#$%^&*()_+";
 
         // Act
-        builder.addArg(emptyArgument);
+        builder.addArg(specialCharArgument);
 
         // Assert
-        assertTrue("The empty string should be added to the list.", builder.args.contains(emptyArgument));
+        assertTrue("The argument with special characters should be added to the list.", builder.args.contains(specialCharArgument));
     }
 }
 }
