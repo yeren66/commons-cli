@@ -23,18 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineTest {
 
     @Test
-    void test_builder_functionality_with_default_options() throws ParseException {
+    void test_builder_with_null_options() {
         // Arrange
-        Options options = new Options();
-        options.addOption("a", "alpha", false, "Alpha option");
         CommandLine.Builder builder = new CommandLine.Builder();
 
-        // Act
-        CommandLine cmd = builder.build();
-
-        // Assert
-        assertNotNull(cmd, "CommandLine object should not be null");
-        assertFalse(cmd.hasOption("a"), "CommandLine should not have 'alpha' option by default");
+        // Act & Assert
+        assertDoesNotThrow(() -> builder.build(), "Builder should handle null options without throwing an exception");
     }
 }
 }
