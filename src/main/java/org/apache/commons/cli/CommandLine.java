@@ -252,6 +252,7 @@ public class CommandLine implements Serializable {
             System.err.println("Exception found converting " + optionName + " to desired type: " + pe.getMessage());
             return null;
         }
+      
     }
 
     /**
