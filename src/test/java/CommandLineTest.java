@@ -31,16 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddOptionWithValidOption() {
+    public void testAddOptionWithNullOption() {
         // Arrange
-        Option option = new Option("a", "alpha", false, "Alpha option");
+        int initialSize = builder.getOptions().size();
 
         // Act
-        Builder result = builder.addOption(option);
+        Builder result = builder.addOption(null);
 
         // Assert
         assertNotNull(result);
-        assertTrue(builder.getOptions().contains(option), "Option should be added to the options list.");
+        assertEquals(initialSize, builder.getOptions().size(), "Options list should remain unchanged.");
     }
 }
 }
