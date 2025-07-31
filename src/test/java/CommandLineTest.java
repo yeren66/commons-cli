@@ -42,16 +42,15 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArgWithValidString() {
+    void testAddArgWithNull() {
         // Arrange
-        String validArg = "--example";
+        String nullArg = null;
 
         // Act
-        builder.addArg(validArg);
+        builder.addArg(nullArg);
 
         // Assert
-        assertEquals(1, args.size(), "The args list should contain one element.");
-        assertEquals(validArg, args.get(0), "The args list should contain the valid argument.");
+        assertTrue(args.isEmpty(), "The args list should remain empty when null is passed.");
     }
 }
 }
