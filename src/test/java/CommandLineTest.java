@@ -23,17 +23,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineBuilderTest {
 
     @Test
-    void testAddOption_withNullOption() {
+    void testAddOption_withDuplicateOption() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        int initialSize = builder.build().getOptions().size();
+        Option option = new Option("a", "alpha", false, "Description for alpha");
+        builder.addOption(option);
 
         // Act
-        CommandLine.Builder result = builder.addOption(null);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertNotNull(result, "Builder instance should not be null after adding a null option");
-        assertEquals(initialSize, builder.build().getOptions().size(), "Options list size should remain unchanged");
+        assertNotNull(result, "Builder instance should not be null after adding a duplicate option");
+        assertEquals(1, builder.build().getOptions().size(), "Options list should not contain duplicate entries");
     }
 
 }
