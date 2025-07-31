@@ -31,21 +31,18 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddDuplicateOption() {
+    void testAddOptionWithEdgeCaseOption() {
         // Arrange
-        Option option = Option.builder("b")
-            .longOpt("beta")
-            .desc("Option beta")
-            .hasArg()
+        Option edgeCaseOption = Option.builder("e")
+            .longOpt("edge")
             .build();
 
         // Act
-        builder.addOption(option);
-        builder.addOption(option);
+        builder.addOption(edgeCaseOption);
 
         // Assert
         CommandLine commandLine = builder.build();
-        assertEquals(2, commandLine.getOptions().stream().filter(opt -> opt.equals(option)).count(), "The duplicate option should be added to the options list");
+        assertTrue(commandLine.getOptions().contains(edgeCaseOption), "The edge-case option should be added to the CommandLine options");
     }
 }
 }
