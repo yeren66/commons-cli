@@ -30,15 +30,15 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddArgWithValidArgument() {
+    public void testAddArgWithNullArgument() {
         // Arrange
-        String validArgument = "testArg";
+        String nullArgument = null;
 
         // Act
-        builder.addArg(validArgument);
+        builder.addArg(nullArgument);
 
         // Assert
-        assertTrue("The argument should be added to the list.", builder.args.contains(validArgument));
+        assertTrue("The list should remain empty when adding a null argument.", builder.args.isEmpty());
     }
 }
 }
