@@ -96,6 +96,7 @@ public class CommandLine implements Serializable {
             if (option != null) {
                 options.add(option);
             }
+          
             return this;
         }
 
