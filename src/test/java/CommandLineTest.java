@@ -16,22 +16,33 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CommandLineBuilderTest {
+class CommandLineTest {
+
+    private CommandLine.Builder builder;
+
+    @BeforeEach
+    void setUp() {
+        builder = new CommandLine.Builder();
+    }
 
     @Test
-    void test_builder_handles_invalid_usage_gracefully() {
+    void testAddArg_withValidString() {
         // Arrange
-        CommandLine.Builder builder = new CommandLine.Builder();
+        String validArg = "test-argument";
 
-        // Act and Assert
-        assertDoesNotThrow(() -> {
-            CommandLine commandLine = builder.build();
-            assertNotNull(commandLine, "The CommandLine object should still be created.");
-        }, "The builder should handle invalid usage gracefully without throwing exceptions.");
+        // Act
+        builder.addArg(validArg);
+
+        // Assert
+        List<String> args = builder.args;
+        assertNotNull(args, "Args list should not be null");
+        assertEquals(1, args.size(), "Args list should have one element");
+        assertEquals(validArg, args.get(0), "The added argument should match the input");
     }
 }
-
 }
