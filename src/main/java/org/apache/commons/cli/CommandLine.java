@@ -84,6 +84,7 @@ public class CommandLine implements Serializable {
                 args.add(arg);
             }
             return this;
+          
         }
 
         /**
