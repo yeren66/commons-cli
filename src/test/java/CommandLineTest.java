@@ -15,25 +15,30 @@ public class CommandLineTest {
         commandline = new CommandLine();
     }
 
-import org.apache.commons.cli.*;
-import org.junit.jupiter.api.Test;
+import org.apache.commons.cli.CommandLine;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class CommandLineTest {
 
-class CommandLineTest {
+    private CommandLine.Builder builder;
+
+    @Before
+    public void setUp() {
+        builder = new CommandLine.Builder();
+    }
 
     @Test
-    void test_builder_edge_case_empty_arguments() throws ParseException {
+    public void testAddArgWithValidArgument() {
         // Arrange
-        Options options = new Options();
-        CommandLine.Builder builder = new CommandLine.Builder();
+        String validArgument = "testArg";
 
         // Act
-        CommandLine cmd = builder.build();
+        builder.addArg(validArgument);
 
         // Assert
-        assertNotNull(cmd, "CommandLine object should not be null");
-        assertEquals(0, cmd.getArgs().length, "CommandLine should have no arguments");
+        assertTrue("The argument should be added to the list.", builder.args.contains(validArgument));
     }
 }
 }
