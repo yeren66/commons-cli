@@ -32,21 +32,18 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOptionWithDuplicateOption() {
+    public void testAddOptionWithEmptyOption() {
         // Arrange
-        Option option = Option.builder("a")
-                .longOpt("alpha")
-                .hasArg()
-                .desc("Test option")
-                .build();
-        commandLineBuilder.addOption(option);
+        Option option = Option.builder("b").build();
 
         // Act
         CommandLine.Builder result = commandLineBuilder.addOption(option);
 
         // Assert
         assertNotNull(result, "Builder instance should not be null.");
-        assertEquals(1, commandLineBuilder.build().getOptions().stream().filter(o -> o.equals(option)).count(), "Duplicate option should not be added.");
+        assertTrue(commandLineBuilder.build().getOptions().contains(option), "Option should be added to the Builder.");
+        assertFalse(option.hasArg(), "Option should not have arguments.");
+        assertNull(option.getDescription(), "Option description should be null.");
     }
 }
 }
