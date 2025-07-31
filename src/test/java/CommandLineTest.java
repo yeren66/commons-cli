@@ -31,17 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithValidString() {
+    public void testAddArgWithNullString() {
         // Arrange
-        String validArg = "testArg";
+        String nullArg = null;
 
         // Act
-        builder.addArg(validArg);
+        builder.addArg(nullArg);
 
         // Assert
         List<String> args = builder.getArgs();
-        assertEquals(1, args.size(), "The args list should contain one element.");
-        assertEquals(validArg, args.get(0), "The added argument should match the input value.");
+        assertTrue(args.isEmpty(), "The args list should remain empty when adding a null argument.");
     }
 }
 }
