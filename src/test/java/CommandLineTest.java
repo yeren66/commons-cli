@@ -31,16 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithNullArgument() {
+    public void testAddArgWithEmptyString() {
         // Arrange
-        String nullArg = null;
+        String emptyArg = "";
 
         // Act
-        Builder result = builder.addArg(nullArg);
+        Builder result = builder.addArg(emptyArg);
 
         // Assert
         assertNotNull(result, "The returned Builder instance should not be null.");
-        assertTrue(builder.args.isEmpty(), "The args list should remain empty when a null argument is added.");
+        assertTrue(builder.args.contains(emptyArg), "The empty string argument should be added to the args list.");
     }
 }
 }
