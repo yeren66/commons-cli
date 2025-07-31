@@ -22,16 +22,20 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineBuilderTest {
 
     @Test
-    public void testBuilderWithNoOptions() {
+    public void testBuilderNullHandling() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
 
         // Act
-        CommandLine commandLine = builder.build();
+        Exception exception = null;
+        try {
+            builder.addOption(null, null);
+        } catch (Exception e) {
+            exception = e;
+        }
 
         // Assert
-        assertNotNull(commandLine, "The CommandLine instance should not be null.");
-        assertFalse(commandLine.hasOption("nonexistent"), "The CommandLine instance should not have any options.");
+        assertNull(exception, "The builder should handle null inputs without throwing exceptions.");
     }
 }
 }
