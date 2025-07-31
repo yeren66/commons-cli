@@ -16,9 +16,9 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine.Builder;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandLineBuilderTest {
@@ -31,16 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithSpecialCharacters() {
+    public void testAddOptionWithValidOption() {
         // Arrange
-        String specialArg = "--key=value&param=123";
+        Option option = new Option("a", "alpha", false, "Alpha option");
 
         // Act
-        Builder result = builder.addArg(specialArg);
+        Builder result = builder.addOption(option);
 
         // Assert
-        assertNotNull(result, "The returned Builder instance should not be null.");
-        assertTrue(builder.args.contains(specialArg), "The argument with special characters should be added to the args list.");
+        assertNotNull(result);
+        assertTrue(builder.getOptions().contains(option), "Option should be added to the options list.");
     }
 }
 }
