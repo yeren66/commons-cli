@@ -31,18 +31,21 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArg_withEmptyString() {
+    void testAddArg_withMultipleCalls() {
         // Arrange
-        String emptyArg = "";
+        String firstArg = "arg1";
+        String secondArg = "arg2";
 
         // Act
-        builder.addArg(emptyArg);
+        builder.addArg(firstArg);
+        builder.addArg(secondArg);
 
         // Assert
         List<String> args = builder.args;
         assertNotNull(args, "Args list should not be null");
-        assertEquals(1, args.size(), "Args list should have one element");
-        assertEquals(emptyArg, args.get(0), "The added argument should be an empty string");
+        assertEquals(2, args.size(), "Args list should contain two elements");
+        assertEquals(firstArg, args.get(0), "The first argument should match the first input");
+        assertEquals(secondArg, args.get(1), "The second argument should match the second input");
     }
 }
 }
