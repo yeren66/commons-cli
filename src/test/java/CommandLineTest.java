@@ -23,12 +23,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineTest {
 
     @Test
-    void test_builder_with_null_options() {
+    void test_builder_edge_case_empty_arguments() throws ParseException {
         // Arrange
+        Options options = new Options();
         CommandLine.Builder builder = new CommandLine.Builder();
 
-        // Act & Assert
-        assertDoesNotThrow(() -> builder.build(), "Builder should handle null options without throwing an exception");
+        // Act
+        CommandLine cmd = builder.build();
+
+        // Assert
+        assertNotNull(cmd, "CommandLine object should not be null");
+        assertEquals(0, cmd.getArgs().length, "CommandLine should have no arguments");
     }
 }
 }
