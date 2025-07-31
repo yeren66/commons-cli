@@ -31,21 +31,18 @@ class CommandLineTest {
     }
 
     @Test
-    void addArg_shouldSupportMultipleArguments() {
+    void addArg_shouldHandleEmptyStringArgument() {
         // Arrange
-        String arg1 = "firstArgument";
-        String arg2 = "secondArgument";
+        String arg = "";
 
         // Act
-        builder.addArg(arg1);
-        builder.addArg(arg2);
+        builder.addArg(arg);
         List<String> args = builder.getArgs(); // Assuming getArgs() is available for testing purposes
 
         // Assert
         assertNotNull(args, "The args list should not be null.");
-        assertEquals(2, args.size(), "The args list should contain exactly two elements.");
-        assertEquals(arg1, args.get(0), "The first argument should match the first input value.");
-        assertEquals(arg2, args.get(1), "The second argument should match the second input value.");
+        assertEquals(1, args.size(), "The args list should contain exactly one element.");
+        assertEquals(arg, args.get(0), "The added argument should match the input value, even if it is an empty string.");
     }
 }
 }
