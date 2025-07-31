@@ -23,18 +23,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineBuilderTest {
 
     @Test
-    void testAddOption_withDuplicateOption() {
+    void testAddOption_withSpecialCharacterOption() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        Option option = new Option("a", "alpha", false, "Description for alpha");
-        builder.addOption(option);
+        Option option = new Option("@", "special-char", false, "Description with special characters: @$#%*");
 
         // Act
         CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertNotNull(result, "Builder instance should not be null after adding a duplicate option");
-        assertEquals(1, builder.build().getOptions().size(), "Options list should not contain duplicate entries");
+        assertNotNull(result, "Builder instance should not be null after adding an option with special characters");
+        assertTrue(builder.build().getOptions().contains(option), "Option with special characters should be present in the options list");
     }
 
 }
