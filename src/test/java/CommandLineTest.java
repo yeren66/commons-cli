@@ -16,42 +16,32 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import java.util.ArrayList;
-import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.cli.Option;
+import org.junit.Before;
+import org.junit.Test;
 
-class CommandLineTest {
+import static org.junit.Assert.*;
+
+public class CommandLineTest {
 
     private CommandLine.Builder builder;
-    private List<String> args;
 
-    @BeforeEach
-    void setUp() {
-        args = new ArrayList<>();
-        builder = new CommandLine.Builder() {
-            @Override
-            public CommandLine.Builder addArg(String arg) {
-                if (arg != null) {
-                    args.add(arg);
-                }
-                return this;
-            }
-        };
+    @Before
+    public void setUp() {
+        builder = new CommandLine.Builder();
     }
 
     @Test
-    void testAddArgWithWhitespaceString() {
+    public void testAddOption_withValidOption() {
         // Arrange
-        String whitespaceArg = "   ";
+        Option option = new Option("a", "alpha", false, "Alpha option");
 
         // Act
-        builder.addArg(whitespaceArg);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertEquals(1, args.size(), "The args list should contain one element.");
-        assertEquals(whitespaceArg, args.get(0), "The args list should contain the whitespace argument.");
+        assertNotNull(result);
+        assertTrue(result.build().getOptions().contains(option));
     }
 }
 }
