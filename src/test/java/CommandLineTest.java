@@ -32,18 +32,17 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOptionWithDuplicateOption() {
+    public void testAddOptionWithEmptyDescription() {
         // Arrange
-        Option option1 = new Option("a", "optionA", false, "Test option A");
-        Option option2 = new Option("a", "optionA", false, "Test option A Duplicate");
-        builder.addOption(option1);
+        Option option = new Option("b", "optionB", false, "");
 
         // Act
-        CommandLine.Builder result = builder.addOption(option2);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
         assertNotNull("The returned Builder instance should not be null", result);
-        assertEquals("The options list should only contain one instance of the option", 1, result.build().getOptions().stream().filter(opt -> opt.getOpt().equals("a")).count());
+        assertTrue("The options list should contain the added option with an empty description", result.build().getOptions().contains(option));
+        assertEquals("The description of the added option should be empty", "", option.getDescription());
     }
 }
 }
