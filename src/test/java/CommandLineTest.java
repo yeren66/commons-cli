@@ -31,16 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithEmptyString() {
+    public void testAddArgWithSpecialCharacters() {
         // Arrange
-        String emptyArg = "";
+        String specialArg = "--key=value&param=123";
 
         // Act
-        Builder result = builder.addArg(emptyArg);
+        Builder result = builder.addArg(specialArg);
 
         // Assert
         assertNotNull(result, "The returned Builder instance should not be null.");
-        assertTrue(builder.args.contains(emptyArg), "The empty string argument should be added to the args list.");
+        assertTrue(builder.args.contains(specialArg), "The argument with special characters should be added to the args list.");
     }
 }
 }
