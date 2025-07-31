@@ -30,15 +30,17 @@ public class CommandLineTest {
     }
 
     @Test
-    public void addArg_addEmptyStringArgument_successfullyAddsToArgsList() {
+    public void addArg_chainedAdditionOfArguments_allArgumentsAreAdded() {
         // Arrange
-        String emptyArgument = "";
+        String arg1 = "--help";
+        String arg2 = "--version";
 
         // Act
-        builder.addArg(emptyArgument);
+        builder.addArg(arg1).addArg(arg2);
 
         // Assert
-        assertTrue("The empty string argument should be added to the args list.", builder.args.contains(emptyArgument));
+        assertTrue("The first argument should be present in the args list.", builder.args.contains(arg1));
+        assertTrue("The second argument should be present in the args list.", builder.args.contains(arg2));
     }
 }
 }
