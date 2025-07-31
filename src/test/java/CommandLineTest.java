@@ -32,21 +32,19 @@ class CommandLineTest {
     }
 
     @Test
-    void addOption_duplicateOption_addsDuplicateSuccessfully() {
+    void addOption_emptyOptionName_addsSuccessfully() {
         // Arrange
-        Option option = Option.builder("o")
-                              .longOpt("option")
-                              .desc("Test option")
+        Option option = Option.builder("")
+                              .longOpt("emptyOption")
+                              .desc("Option with an empty name")
                               .hasArg()
                               .build();
-        builder.addOption(option);
 
         // Act
         builder.addOption(option);
 
         // Assert
-        long count = builder.getOptions().stream().filter(o -> o.equals(option)).count();
-        assertEquals(2, count, "The option should be added twice to the options list.");
+        assertTrue(builder.getOptions().contains(option), "The option with an empty name should be added.");
     }
 }
 }
