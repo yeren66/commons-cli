@@ -17,21 +17,19 @@ public class CommandLineTest {
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.Test;
 
 class CommandLineTest {
 
     @Test
-    void testBuilderHandlesNullConfiguration() {
+    void testBuilderWithInvalidOption() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
+        Option invalidOption = null; // Simulating an invalid option
 
-        // Act
-        CommandLine commandLine = builder.build();
-
-        // Assert
-        assertNotNull(commandLine, "The CommandLine instance should not be null.");
-        assertDoesNotThrow(() -> builder.build(), "The builder.build() method should handle null configurations gracefully.");
+        // Act and Assert
+        assertThrows(IllegalArgumentException.class, () -> builder.addOption(invalidOption), "Adding a null option should throw an IllegalArgumentException.");
     }
 }
 }
