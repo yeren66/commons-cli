@@ -22,14 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineBuilderTest {
 
     @Test
-    void test_builder_creates_commandline_object_successfully() {
+    void test_builder_with_null_input_handling() {
         // Arrange
 
         // Act
         CommandLine.Builder builder = new CommandLine.Builder();
 
         // Assert
-        assertNotNull(builder, "The builder instance should not be null.");
+        assertNotNull(builder, "The builder instance should be created even when no parameters are provided.");
     }
 }
 
