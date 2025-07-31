@@ -42,16 +42,16 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArgWithEmptyString() {
+    void testAddArgWithWhitespaceString() {
         // Arrange
-        String emptyArg = "";
+        String whitespaceArg = "   ";
 
         // Act
-        builder.addArg(emptyArg);
+        builder.addArg(whitespaceArg);
 
         // Assert
         assertEquals(1, args.size(), "The args list should contain one element.");
-        assertEquals(emptyArg, args.get(0), "The args list should contain the empty string argument.");
+        assertEquals(whitespaceArg, args.get(0), "The args list should contain the whitespace argument.");
     }
 }
 }
