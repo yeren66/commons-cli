@@ -31,17 +31,21 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithEmptyString() {
+    public void testAddArgWithMultipleInvocations() {
         // Arrange
-        String emptyArg = "";
+        String arg1 = "arg1";
+        String arg2 = "arg2";
+        String arg3 = "arg3";
 
         // Act
-        builder.addArg(emptyArg);
+        builder.addArg(arg1).addArg(arg2).addArg(arg3);
 
         // Assert
         List<String> args = builder.getArgs();
-        assertEquals(1, args.size(), "The args list should contain one element.");
-        assertEquals(emptyArg, args.get(0), "The added argument should be the empty string.");
+        assertEquals(3, args.size(), "The args list should contain all added arguments.");
+        assertEquals(arg1, args.get(0), "The first argument should match.");
+        assertEquals(arg2, args.get(1), "The second argument should match.");
+        assertEquals(arg3, args.get(2), "The third argument should match.");
     }
 }
 }
