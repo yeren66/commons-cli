@@ -31,16 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddArgWithValidArgument() {
+    public void testAddArgWithNullArgument() {
         // Arrange
-        String validArg = "--file=example.txt";
+        String nullArg = null;
 
         // Act
-        Builder result = builder.addArg(validArg);
+        Builder result = builder.addArg(nullArg);
 
         // Assert
         assertNotNull(result, "The returned Builder instance should not be null.");
-        assertTrue(builder.args.contains(validArg), "The argument should be added to the args list.");
+        assertTrue(builder.args.isEmpty(), "The args list should remain empty when a null argument is added.");
     }
 }
 }
