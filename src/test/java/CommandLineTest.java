@@ -23,17 +23,19 @@ import static org.junit.Assert.*;
 public class CommandLineTest {
 
     @Test
-    public void testAddArgWithNull() {
+    public void testAddArgWithEmptyString() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
+        String emptyArg = "";
 
         // Act
-        builder.addArg(null);
+        builder.addArg(emptyArg);
         List<String> args = builder.getArgs();
 
         // Assert
         assertNotNull("Args list should not be null", args);
-        assertTrue("Args list should remain empty", args.isEmpty());
+        assertEquals("Args list should contain one element", 1, args.size());
+        assertEquals("Args list should contain the empty string", emptyArg, args.get(0));
     }
 }
 }
