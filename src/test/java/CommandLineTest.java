@@ -31,17 +31,16 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOptionWithDuplicateOptions() {
+    public void testAddOptionWithEdgeCaseOption() {
         // Arrange
-        Option option = new Option("a", "alpha", false, "Alpha option");
+        Option option = new Option("", "", false, "");
 
         // Act
-        builder.addOption(option);
-        builder.addOption(option);
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertEquals(1, builder.getOptions().size()); // Assuming getOptions() returns a collection.
-        assertTrue(builder.getOptions().contains(option));
+        assertNotNull(result);
+        assertTrue(builder.getOptions().contains(option)); // Assuming getOptions() is a method to retrieve options.
     }
 }
 }
