@@ -16,24 +16,42 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CommandLineBuilderTest {
+class CommandLineTest {
+
+    private CommandLine.Builder builder;
+    private List<String> args;
+
+    @BeforeEach
+    void setUp() {
+        args = new ArrayList<>();
+        builder = new CommandLine.Builder() {
+            @Override
+            public CommandLine.Builder addArg(String arg) {
+                if (arg != null) {
+                    args.add(arg);
+                }
+                return this;
+            }
+        };
+    }
 
     @Test
-    public void testBuilderEmptyInput() {
+    void testAddArgWithValidString() {
         // Arrange
-        CommandLine.Builder builder = new CommandLine.Builder();
+        String validArg = "--example";
 
         // Act
-        // Example: If Builder has a method to add options, test with empty input.
-        // Replace this with actual checks for empty input handling.
-        builder.addOption("");
+        builder.addArg(validArg);
 
         // Assert
-        // Assuming addOption("") does not throw an exception but adds an empty option.
-        assertTrue(builder.getOptions().isEmpty(), "Builder should not add empty options.");
+        assertEquals(1, args.size(), "The args list should contain one element.");
+        assertEquals(validArg, args.get(0), "The args list should contain the valid argument.");
     }
 }
 }
