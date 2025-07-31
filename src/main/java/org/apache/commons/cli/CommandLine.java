@@ -120,6 +120,7 @@ public class CommandLine implements Serializable {
         @Override
         public CommandLine get() {
             return new CommandLine(args, options, deprecatedHandler);
+          
         }
 
         /**
