@@ -31,9 +31,9 @@ class CommandLineTest {
     }
 
     @Test
-    void addArg_shouldAddNonNullArgument() {
+    void addArg_shouldIgnoreNullArgument() {
         // Arrange
-        String arg = "testArgument";
+        String arg = null;
 
         // Act
         builder.addArg(arg);
@@ -41,8 +41,7 @@ class CommandLineTest {
 
         // Assert
         assertNotNull(args, "The args list should not be null.");
-        assertEquals(1, args.size(), "The args list should contain exactly one element.");
-        assertEquals(arg, args.get(0), "The added argument should match the input value.");
+        assertEquals(0, args.size(), "The args list should remain empty when a null argument is added.");
     }
 }
 }
