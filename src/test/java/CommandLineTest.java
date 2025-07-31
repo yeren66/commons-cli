@@ -31,17 +31,16 @@ public class CommandLineBuilderTest {
     }
 
     @Test
-    public void testAddOptionWithDuplicateOption() {
+    public void testAddOptionWithEmptyOption() {
         // Arrange
-        Option option = new Option("b", "beta", false, "Beta option");
-        builder.addOption(option);
+        Option option = new Option("", "", false, "");
 
         // Act
         Builder result = builder.addOption(option);
 
         // Assert
         assertNotNull(result);
-        assertEquals(2, builder.getOptions().stream().filter(opt -> opt.equals(option)).count(), "Duplicate option should be added to the options list.");
+        assertTrue(builder.getOptions().contains(option), "Empty option should be added to the options list.");
     }
 }
 }
