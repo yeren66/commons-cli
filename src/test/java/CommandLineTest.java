@@ -23,17 +23,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineBuilderTest {
 
     @Test
-    void testAddOption_withValidOption() {
+    void testAddOption_withNullOption() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        Option option = new Option("a", "alpha", false, "Description for alpha");
+        int initialSize = builder.build().getOptions().size();
 
         // Act
-        CommandLine.Builder result = builder.addOption(option);
+        CommandLine.Builder result = builder.addOption(null);
 
         // Assert
-        assertNotNull(result, "Builder instance should not be null after adding an option");
-        assertTrue(builder.build().getOptions().contains(option), "Option should be present in the options list");
+        assertNotNull(result, "Builder instance should not be null after adding a null option");
+        assertEquals(initialSize, builder.build().getOptions().size(), "Options list size should remain unchanged");
     }
 
 }
