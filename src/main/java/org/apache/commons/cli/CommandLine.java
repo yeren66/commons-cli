@@ -83,6 +83,7 @@ public class CommandLine implements Serializable {
             if (arg != null) {
                 args.add(arg);
             }
+          
             return this;
           
         }
