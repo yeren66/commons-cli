@@ -16,26 +16,33 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CommandLineBuilderTest {
+class CommandLineTest {
+
+    private CommandLine.Builder builder;
+
+    @BeforeEach
+    void setUp() {
+        builder = new CommandLine.Builder();
+    }
 
     @Test
-    public void testBuilderNullHandling() {
+    void addArg_shouldAddNonNullArgument() {
         // Arrange
-        CommandLine.Builder builder = new CommandLine.Builder();
+        String arg = "testArgument";
 
         // Act
-        Exception exception = null;
-        try {
-            builder.addOption(null, null);
-        } catch (Exception e) {
-            exception = e;
-        }
+        builder.addArg(arg);
+        List<String> args = builder.getArgs(); // Assuming getArgs() is available for testing purposes
 
         // Assert
-        assertNull(exception, "The builder should handle null inputs without throwing exceptions.");
+        assertNotNull(args, "The args list should not be null.");
+        assertEquals(1, args.size(), "The args list should contain exactly one element.");
+        assertEquals(arg, args.get(0), "The added argument should match the input value.");
     }
 }
 }
