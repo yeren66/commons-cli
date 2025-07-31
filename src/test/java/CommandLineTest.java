@@ -30,15 +30,15 @@ public class CommandLineTest {
     }
 
     @Test
-    public void addArg_addNullArgument_doesNotAddToArgsList() {
+    public void addArg_addEmptyStringArgument_successfullyAddsToArgsList() {
         // Arrange
-        String nullArgument = null;
+        String emptyArgument = "";
 
         // Act
-        builder.addArg(nullArgument);
+        builder.addArg(emptyArgument);
 
         // Assert
-        assertTrue("The args list should remain empty when a null argument is added.", builder.args.isEmpty());
+        assertTrue("The empty string argument should be added to the args list.", builder.args.contains(emptyArgument));
     }
 }
 }
