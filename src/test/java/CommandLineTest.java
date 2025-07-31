@@ -22,12 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class CommandLineTest {
 
     @Test
-    void testBuilderCreation_NullSafety() {
-        // Arrange & Act
-        CommandLine.Builder builder = new CommandLine.Builder();
-
-        // Assert
-        assertNotNull(builder, "Builder instance should not be null even in null safety checks");
+    void testBuilderCreation_ExceptionHandling() {
+        // Arrange & Act & Assert
+        assertDoesNotThrow(() -> new CommandLine.Builder(), "Builder creation should not throw any exceptions");
     }
 }
 }
