@@ -16,15 +16,33 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CommandLineTest {
 
+    private CommandLine.Builder builder;
+
+    @BeforeEach
+    void setUp() {
+        builder = new CommandLine.Builder();
+    }
+
     @Test
-    void testBuilderCreation_ExceptionHandling() {
-        // Arrange & Act & Assert
-        assertDoesNotThrow(() -> new CommandLine.Builder(), "Builder creation should not throw any exceptions");
+    void testAddArgWithValidInput() {
+        // Arrange
+        String arg = "validArg";
+
+        // Act
+        builder.addArg(arg);
+
+        // Assert
+        List<String> args = builder.getArgs();
+        assertNotNull(args);
+        assertEquals(1, args.size());
+        assertEquals("validArg", args.get(0));
     }
 }
 }
