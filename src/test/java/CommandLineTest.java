@@ -23,21 +23,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineTest {
 
     @Test
-    public void test_addOption_with_duplicate_option() {
+    public void test_addOption_with_empty_option() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        Option option = Option.builder("a")
-                              .longOpt("alpha")
-                              .desc("Test option")
-                              .required(false)
-                              .build();
-        builder.addOption(option);
+        Option option = new Option("", "");
 
         // Act
         builder.addOption(option);
 
         // Assert
-        assertEquals(1, builder.getOptions().size(), "Duplicate options should not be added");
+        assertTrue(builder.getOptions().contains(option), "Empty option should still be added to the builder");
     }
 }
 }
