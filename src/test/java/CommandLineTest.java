@@ -16,7 +16,6 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,20 +31,16 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOptionWithValidOption() {
+    public void testAddOptionWithNullOption() {
         // Arrange
-        Option option = Option.builder("a")
-                .longOpt("alpha")
-                .hasArg()
-                .desc("Test option")
-                .build();
+        int initialSize = commandLineBuilder.build().getOptions().size();
 
         // Act
-        CommandLine.Builder result = commandLineBuilder.addOption(option);
+        CommandLine.Builder result = commandLineBuilder.addOption(null);
 
         // Assert
         assertNotNull(result, "Builder instance should not be null.");
-        assertTrue(commandLineBuilder.build().getOptions().contains(option), "Option should be added to the Builder.");
+        assertEquals(initialSize, commandLineBuilder.build().getOptions().size(), "Options size should remain unchanged.");
     }
 }
 }
