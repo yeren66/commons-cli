@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 class CommandLineTest {
 
     @Test
-    void testBuilderCreatesCommandLineInstance() {
+    void testBuilderWithEmptyOptions() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
 
@@ -31,7 +31,7 @@ class CommandLineTest {
 
         // Assert
         assertNotNull(commandLine, "The CommandLine instance should not be null.");
-        assertTrue(commandLine instanceof CommandLine, "The created object should be an instance of CommandLine.");
+        assertTrue(commandLine.getOptions().isEmpty(), "The CommandLine instance should have no options set by default.");
     }
 }
 }
