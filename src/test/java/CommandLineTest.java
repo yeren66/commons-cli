@@ -16,26 +16,35 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
-import org.junit.Test;
-import java.util.List;
-import static org.junit.Assert.*;
+import org.apache.commons.cli.Option;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class CommandLineTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class CommandLineTest {
+
+    private CommandLine.Builder builder;
+
+    @BeforeEach
+    void setUp() {
+        builder = new CommandLine.Builder();
+    }
 
     @Test
-    public void testAddArgWithSpecialCharacters() {
+    void addOption_validOption_addsOptionSuccessfully() {
         // Arrange
-        CommandLine.Builder builder = new CommandLine.Builder();
-        String specialArg = "!@#$%^&*()_+";
+        Option option = Option.builder("o")
+                              .longOpt("option")
+                              .desc("Test option")
+                              .hasArg()
+                              .build();
 
         // Act
-        builder.addArg(specialArg);
-        List<String> args = builder.getArgs();
+        builder.addOption(option);
 
         // Assert
-        assertNotNull("Args list should not be null", args);
-        assertEquals("Args list should contain one element", 1, args.size());
-        assertEquals("Args list should contain the special character string", specialArg, args.get(0));
+        assertTrue(builder.getOptions().contains(option), "The option should be added to the options list.");
     }
 }
 }
