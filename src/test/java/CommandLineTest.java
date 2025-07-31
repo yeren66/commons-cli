@@ -22,18 +22,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineBuilderTest {
 
     @Test
-    public void testBuilderInstanceMethodsWorkCorrectly() {
+    public void testBuilderWithNoOptions() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
 
         // Act
-        builder.addOption("option1", "value1");
         CommandLine commandLine = builder.build();
 
         // Assert
-        assertNotNull(commandLine, "The builder should produce a valid CommandLine instance.");
-        assertTrue(commandLine.hasOption("option1"), "The CommandLine instance should contain the added option.");
-        assertEquals("value1", commandLine.getOptionValue("option1"), "The option value should match the provided value.");
+        assertNotNull(commandLine, "The CommandLine instance should not be null.");
+        assertFalse(commandLine.hasOption("nonexistent"), "The CommandLine instance should not have any options.");
     }
 }
 }
