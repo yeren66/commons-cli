@@ -16,33 +16,31 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+import org.apache.commons.cli.Option;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class CommandLineTest {
+public class CommandLineTest {
 
     private CommandLine.Builder builder;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         builder = new CommandLine.Builder();
     }
 
     @Test
-    void addArg_shouldHandleEmptyStringArgument() {
+    public void testAddOptionWithValidOption() {
         // Arrange
-        String arg = "";
+        Option option = new Option("a", "alpha", false, "Alpha option");
 
         // Act
-        builder.addArg(arg);
-        List<String> args = builder.getArgs(); // Assuming getArgs() is available for testing purposes
+        CommandLine.Builder result = builder.addOption(option);
 
         // Assert
-        assertNotNull(args, "The args list should not be null.");
-        assertEquals(1, args.size(), "The args list should contain exactly one element.");
-        assertEquals(arg, args.get(0), "The added argument should match the input value, even if it is an empty string.");
+        assertNotNull(result);
+        assertTrue(builder.getOptions().contains(option)); // Assuming getOptions() is a method to retrieve options.
     }
 }
 }
