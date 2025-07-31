@@ -16,20 +16,22 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CommandLineTest {
 
     @Test
-    public void testBuilder_handlesNullInputGracefully() {
+    public void testBuilder_invalidOptionHandling() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
+        Option invalidOption = null; // Simulating a null or invalid option
 
         // Act & Assert
-        assertDoesNotThrow(() -> {
-            builder.addOption(null);
-        }, "Builder should handle null inputs gracefully without throwing exceptions");
+        assertThrows(IllegalArgumentException.class, () -> {
+            builder.addOption(invalidOption);
+        }, "Builder should throw IllegalArgumentException when invalid options are added");
     }
 }
 }
