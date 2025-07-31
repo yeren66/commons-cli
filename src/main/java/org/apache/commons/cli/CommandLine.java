@@ -71,6 +71,7 @@ public class CommandLine implements Serializable {
         @Deprecated
         public Builder() {
             // empty
+
         }
 
         /**
@@ -83,7 +84,6 @@ public class CommandLine implements Serializable {
             if (arg != null) {
                 args.add(arg);
             }
-          
             return this;
           
         }
@@ -99,6 +99,7 @@ public class CommandLine implements Serializable {
                 options.add(option);
             }
             return this;
+
         }
 
         /**
