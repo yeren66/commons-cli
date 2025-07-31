@@ -31,18 +31,22 @@ class CommandLineTest {
     }
 
     @Test
-    void testAddArgWithEmptyString() {
+    void testAddArgWithMultipleCalls() {
         // Arrange
-        String arg = "";
+        String arg1 = "arg1";
+        String arg2 = "arg2";
+        String arg3 = "arg3";
 
         // Act
-        builder.addArg(arg);
+        builder.addArg(arg1).addArg(arg2).addArg(arg3);
 
         // Assert
         List<String> args = builder.getArgs();
         assertNotNull(args);
-        assertEquals(1, args.size());
-        assertEquals("", args.get(0));
+        assertEquals(3, args.size());
+        assertEquals("arg1", args.get(0));
+        assertEquals("arg2", args.get(1));
+        assertEquals("arg3", args.get(2));
     }
 }
 }
