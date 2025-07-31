@@ -16,6 +16,7 @@ public class CommandLineTest {
     }
 
 import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.Option;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,16 +32,17 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOption_withNullOption() {
+    public void testAddOption_withDuplicateOptions() {
         // Arrange
-        Option option = null;
+        Option option = new Option("a", "alpha", false, "Alpha option");
 
         // Act
-        CommandLine.Builder result = builder.addOption(option);
+        builder.addOption(option);
+        builder.addOption(option);
+        CommandLine commandLine = builder.build();
 
         // Assert
-        assertNotNull(result);
-        assertTrue(result.build().getOptions().isEmpty());
+        assertEquals(1, commandLine.getOptions().stream().filter(o -> o.equals(option)).count());
     }
 }
 }
