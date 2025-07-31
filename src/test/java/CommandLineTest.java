@@ -32,16 +32,16 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOptionWithValidOption() {
+    public void testAddOptionWithNull() {
         // Arrange
-        Option option = new Option("a", "optionA", false, "Test option A");
+        Option option = null;
 
         // Act
         CommandLine.Builder result = builder.addOption(option);
 
         // Assert
         assertNotNull("The returned Builder instance should not be null", result);
-        assertTrue("The options list should contain the added option", result.build().getOptions().contains(option));
+        assertTrue("The options list should remain empty when null is added", result.build().getOptions().isEmpty());
     }
 }
 }
