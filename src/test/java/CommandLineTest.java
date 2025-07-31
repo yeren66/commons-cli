@@ -22,12 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CommandLineBuilderTest {
 
     @Test
-    public void testBuilderInitialization() {
+    public void testBuilderWithDefaultValues() {
         // Arrange & Act
         CommandLine.Builder builder = new CommandLine.Builder();
 
         // Assert
-        assertNotNull(builder, "The Builder instance should not be null after initialization.");
+        // Assuming the Builder has some default values to verify (e.g., empty options list).
+        // Replace this with actual checks if the CommandLine.Builder exposes relevant methods or fields.
+        assertTrue(builder.isEmpty(), "The Builder instance should have default empty state upon initialization.");
     }
 }
 }
