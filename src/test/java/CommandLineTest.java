@@ -23,19 +23,19 @@ import static org.junit.Assert.*;
 public class CommandLineTest {
 
     @Test
-    public void testAddArgWithEmptyString() {
+    public void testAddArgWithSpecialCharacters() {
         // Arrange
         CommandLine.Builder builder = new CommandLine.Builder();
-        String emptyArg = "";
+        String specialArg = "!@#$%^&*()_+";
 
         // Act
-        builder.addArg(emptyArg);
+        builder.addArg(specialArg);
         List<String> args = builder.getArgs();
 
         // Assert
         assertNotNull("Args list should not be null", args);
         assertEquals("Args list should contain one element", 1, args.size());
-        assertEquals("Args list should contain the empty string", emptyArg, args.get(0));
+        assertEquals("Args list should contain the special character string", specialArg, args.get(0));
     }
 }
 }
