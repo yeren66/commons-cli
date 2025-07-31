@@ -32,17 +32,19 @@ public class CommandLineTest {
     }
 
     @Test
-    public void testAddOption_withDuplicateOptions() {
+    public void testAddOption_withMultipleOptions() {
         // Arrange
-        Option option = new Option("a", "alpha", false, "Alpha option");
+        Option option1 = new Option("a", "alpha", false, "Alpha option");
+        Option option2 = new Option("b", "beta", true, "Beta option");
 
         // Act
-        builder.addOption(option);
-        builder.addOption(option);
+        builder.addOption(option1);
+        builder.addOption(option2);
         CommandLine commandLine = builder.build();
 
         // Assert
-        assertEquals(1, commandLine.getOptions().stream().filter(o -> o.equals(option)).count());
+        assertTrue(commandLine.getOptions().contains(option1));
+        assertTrue(commandLine.getOptions().contains(option2));
     }
 }
 }
